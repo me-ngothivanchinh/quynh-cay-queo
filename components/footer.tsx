@@ -25,10 +25,20 @@ const FooterComponent :  FunctionComponent<any> = (props) => {
         message: messageRef.current.value
       })
     })
-    .then(res => res.json())
-    .then(data => {
-      setOrderResult(data);
-    });
+    .then(res => {
+      res.json()
+      var greeting
+      if (res.status == 200) {
+        greeting = "Cam on quy khach";
+      }
+      else if (res.status == 503){
+        greeting = "Order error. Call me please 09012345678"
+      }
+      else {
+        greeting = "Good day"
+      }
+      setOrderResult(greeting);
+    })
   };
 
   return (
